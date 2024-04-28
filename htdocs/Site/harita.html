@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>sbs</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Responsive-->
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- fevicon -->
+  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <!-- Tweaks for older IEs-->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<!-- body -->
+
+<body class="main-layout inner_page">
+  <!-- loader  -->
+  <div class="loader_bg">
+    <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+  </div>
+  <!-- end loader -->
+  <!-- header -->
+  <div class="header">
+    <div class="container-fluid">
+      <div class="row d_flex">
+        <div class=" col-md-2 col-sm-3 col logo_section">
+          <div class="full">
+            <div class="center-desk">
+             
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-12">
+          <nav class="navigation navbar navbar-expand-md navbar-dark ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+              aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Anasayfa</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="harita.html">Suç Haritası</a>
+                </li>
+               
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="col-md-2">
+          <ul class="email text_align_right">
+            <li class="d_none"><a href="Javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+            <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;"
+                  aria-hidden="true"></i></a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end header inner -->
+  <!-- about -->
+  
+  <!-- end about -->
+  <!--  footer -->
+  
+  <!-- end footer -->
+  <!-- Javascript files-->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.0.0.min.js"></script>
+  <!-- sidebar -->
+  <script src="js/custom.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>
+
+<body>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <!-- I recommend you host this file on your own, since this will change without warning -->
+  <script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+
+  <div id="usa" style=" width: 1800px; height: 900px;"></div>
+
+
+
+
+
+
+
+  <script>
+    var bubble_map = new Datamap({
+      element: document.getElementById('usa'),
+      scope: 'usa',
+
+      geographyConfig: {
+        popupOnHover: true,
+        highlightOnHover: true,
+        borderColor: '#444',
+        borderWidth: 0.5,
+        dataUrl: 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/usa.topo.json'
+        //dataJson: topoJsonData
+      },
+      fills: {
+        defaultFill: '#ABDDA4',
+        COKYOGUN: '#b80202',
+        ORTAYOGUN: '#b86602',
+        AZYOGUN: '#00ff2f',
+
+
+
+      },
+
+      data: {
+        'JH': { fillKey: 'MINOR' },
+        'MH': { fillKey: 'MINOR' }
+      },
+      setProjection: function (element) {
+        var projection = d3.geo.mercator()
+          .center([-101.444651,40.722220]) // always in [East Latitude, North Longitude]
+          .scale(200)
+          .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+
+        var path = d3.geo.path().projection(projection);
+        return { path: path, projection: projection };
+      }
+    });
+
+    bubble_map.bubbles([
+
+
+      {
+        name: 'Castle Bravo',
+        borderWidth: 0,
+        radius: 20,
+        yeild: 15000,
+        country: 'USA',
+        significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
+        fillKey: 'AZYOGUN',
+        date: '1954-03-01',
+        latitude: 40.722220,
+        longitude: -101.444651
+      }
+    ], {
+      popupTemplate: function (geo, data) {
+        return '<div class="hoverinfo">UGUR:' + data.fillKey + 'Exploded on ' + data.date + ' by the ' + data.country + ''
+      }
+    });
+
+
+  </script>
+
+
+
+
+</body>
+
+
+<script>
+
+  /*
+  
+      
+  var bubble_map = new Datamap({
+    element: document.getElementById("bubbles"),
+    geographyConfig: {
+      popupOnHover: false,
+      highlightOnHover: false
+    },
+    fills: {
+      defaultFill: '#ABDDA4',
+      USA: 'blue',
+      RUS: 'red'
+    }
+  });
+  bubble_map.bubbles([
+    {
+      name: 'Not a bomb, but centered on Brazil',
+      radius: 23,
+      centered: 'BRA',
+      country: 'USA',
+      yeild: 0,
+      fillKey: 'USA',
+      date: '1954-03-01'
+    },
+    {
+      name: 'Not a bomb',
+      radius: 15,
+      yeild: 0,
+      country: 'USA',
+      centered: 'USA',
+      date: '1986-06-05',
+      significance: 'Centered on US',
+      fillKey: 'USA'
+    },
+    {
+      name: 'Castle Bravo',
+      radius: 10,
+      yeild: 15000,
+      country: 'USA',
+      significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
+      fillKey: 'USA',
+      date: '1954-03-01',
+      latitude: 11.415,
+      longitude: 165.1619
+    }
+  ], {
+    popupTemplate: function(geo, data) {
+      return '<div class="hoverinfo">Yield:' + data.yeild + 'Exploded on ' + data.date + ' by the '  + data.country + ''
+    }
+  });
+  
+  */
+</script>
+
+
+
+
+</body>

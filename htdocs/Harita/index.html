@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <!-- I recommend you host this file on your own, since this will change without warning -->
+    <script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>     
+
+    <div id="usa" style=" width: 1800px; height: 900px;"></div>
+
+
+
+
+
+
+
+    <script>
+        var bubble_map = new Datamap({
+            element: document.getElementById('usa'),
+            scope: 'usa',
+
+            geographyConfig: {
+                popupOnHover: true,
+                highlightOnHover: true,
+                borderColor: '#444',
+                borderWidth: 0.5,
+                dataUrl: 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/usa.topo.json'
+                //dataJson: topoJsonData
+            },
+            fills: {
+                defaultFill: '#ABDDA4',
+                COKYOGUN: '#b80202',
+                ORTAYOGUN: '#b86602',
+                AZYOGUN: '#00ff2f',
+
+
+              
+            },
+
+            data: {
+                'JH': { fillKey: 'MINOR' },
+                'MH': { fillKey: 'MINOR' }
+            },
+            setProjection: function (element) {
+                var projection = d3.geo.mercator()
+                    .center([-106.3468, 68.1304]) // always in [East Latitude, North Longitude]
+                    .scale(250)
+                    .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+
+                var path = d3.geo.path().projection(projection);
+                return { path: path, projection: projection };
+            }
+        });
+
+        bubble_map.bubbles([
+      
+        
+      {
+        name: 'Castle Bravo',
+        borderWidth:0,
+        radius: 20,
+        yeild: 15000,
+        country: 'USA',
+        significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
+        fillKey: 'AZYOGUN',
+        date: '1954-03-01',
+        latitude: 40.722220,
+        longitude: -101.444651
+      }
+    ], {
+      popupTemplate: function(geo, data) {
+        return '<div class="hoverinfo">UGUR:' + data.fillKey + 'Exploded on ' + data.date + ' by the '  + data.country + ''
+      }
+    });
+    
+
+    </script>
+
+
+
+
+</body>
+
+
+<script>
+
+    /*
+    
+        
+    var bubble_map = new Datamap({
+      element: document.getElementById("bubbles"),
+      geographyConfig: {
+        popupOnHover: false,
+        highlightOnHover: false
+      },
+      fills: {
+        defaultFill: '#ABDDA4',
+        USA: 'blue',
+        RUS: 'red'
+      }
+    });
+    bubble_map.bubbles([
+      {
+        name: 'Not a bomb, but centered on Brazil',
+        radius: 23,
+        centered: 'BRA',
+        country: 'USA',
+        yeild: 0,
+        fillKey: 'USA',
+        date: '1954-03-01'
+      },
+      {
+        name: 'Not a bomb',
+        radius: 15,
+        yeild: 0,
+        country: 'USA',
+        centered: 'USA',
+        date: '1986-06-05',
+        significance: 'Centered on US',
+        fillKey: 'USA'
+      },
+      {
+        name: 'Castle Bravo',
+        radius: 10,
+        yeild: 15000,
+        country: 'USA',
+        significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
+        fillKey: 'USA',
+        date: '1954-03-01',
+        latitude: 11.415,
+        longitude: 165.1619
+      }
+    ], {
+      popupTemplate: function(geo, data) {
+        return '<div class="hoverinfo">Yield:' + data.yeild + 'Exploded on ' + data.date + ' by the '  + data.country + ''
+      }
+    });
+    
+    */
+</script>
+
+
+
+
+</body>
